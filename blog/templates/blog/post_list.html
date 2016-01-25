@@ -1,26 +1,17 @@
+{% extends 'blog/base.html' %}
+
 <html>
-    <head>
-        <title>Blog Test</title>
-    </head>
     <body>
-        <div>
-            <h1><a href="">Blog de test</a></h1>
-        </div>
-
-        <div>
-
-            <h2><a href="">Cookiezi pour la triplette.</a></h2>
-            <p> 99.13%. L'accuracy de Cookiezi pour son dernier exploit en date, un FC sur Freedom Dive +HR qui lui rapporte 713pp et le 2éme score du plus gros nombre de PP gagné en une map. </p>
-            <p> A cet heure, ses 3 meilleurs Top Ranks sont les 3 plays ayant donné le plus gros nombre de PP depuis le début du jeu. Coup du Chapeau !</p>
-            <p>published: 25.01.2016, 9:49</p>
-        </div>
-
-        <div>
-
-            <h2><a href="">les USA cassent la hierarchie.</a></h2>
-            <p> Les USA gagnent pour la première fois l'OWC en s'imposant au Tie Break 7-6 face à la Chine au cours d'un match très sérré.</p>
-            <p> Pour la première fois depuis la création de la competition, l'OWC n'a pas été remporté par une équipe asiatique. </p>
-            <p>published: 25.01.2016, 9:54</p>
-        </div>
+         {% block content %}
+            {% for post in posts %}
+                <div class="post">
+                    <div class="date">
+                        {{ post.published_date }}
+                    </div>
+                    <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+                    <p>{{ post.description|linebreaks }}</p>
+                </div>
+            {% endfor %}
+         {% endblock content %}
     </body>
 </html>
